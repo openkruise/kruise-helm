@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+   name: postupgrade-hook
+   annotations:
+       "helm.sh/hook": "post-upgrade"
+       "helm.sh/hook-delete-policy": "hook-succeeded"
+spec:
+  template:
+    spec:
+      containers:
+      - name: health-check-container
+        image: openkruise/hook:latest
+        command: ["/bin/sh", "-c"]
+        args:
+        - |
+            lua healthcheck.lua cloneset default -t 5
+      restartPolicy: Never
+      serviceAccountName: default
