@@ -44,7 +44,7 @@ spec:
     spec:
       containers:
       - name: health-check-container
-        image: openkruise/hook:latest
+        image: openkruise/helm-hook:latest
         command: ["/bin/sh", "-c"]
         args:
         - |
@@ -89,7 +89,7 @@ helm upgrade kruise
 
 OR
 
-helm upgarde kruise-rollout
+helm upgrade kruise-rollout
 ```
 
 ## Usage
